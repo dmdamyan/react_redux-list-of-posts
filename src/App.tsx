@@ -34,7 +34,6 @@ export const App: React.FC = () => {
     dispatch(selectedPostSlice.actions.clearSelectedPost());
 
     if (author) {
-      // dispatch(selectedPostAsync(author.id));
       dispatch(postsAsync(author.id));
     } else {
       dispatch(postsSlice.actions.clearPosts());

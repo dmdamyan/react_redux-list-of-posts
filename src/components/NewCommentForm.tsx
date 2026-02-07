@@ -1,6 +1,5 @@
 import classNames from 'classnames';
 import React, { useState } from 'react';
-// import { CommentData } from '../types/Comment';
 import { useAppDispatch } from '../app/hooks';
 import { addCommentAsync } from '../features/comments';
 
@@ -62,14 +61,10 @@ export const NewCommentForm: React.FC<Props> = ({ postId }) => {
 
     setSubmitting(true);
 
-    // it is very easy to forget about `await` keyword
-    // await onSubmit({ name, email, body });
-    dispatch(addCommentAsync({ name, email, body, postId }));
+    await dispatch(addCommentAsync({ name, email, body, postId }));
 
-    // and the spinner will disappear immediately
     setSubmitting(false);
     setValues(current => ({ ...current, body: '' }));
-    // We keep the entered name and email
   };
 
   return (
