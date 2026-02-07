@@ -66,7 +66,6 @@ export const commentsSlice = createSlice({
       })
       .addCase(addCommentAsync.pending, state => {
         state.hasError = false;
-        state.loaded = false;
       })
       .addCase(addCommentAsync.fulfilled, (state, action) => {
         state.items.push(action.payload);
@@ -78,7 +77,6 @@ export const commentsSlice = createSlice({
       })
       .addCase(deleteCommentAsync.pending, state => {
         state.hasError = false;
-        state.loaded = false;
       })
       .addCase(deleteCommentAsync.fulfilled, (state, action) => {
         state.items = state.items.filter(

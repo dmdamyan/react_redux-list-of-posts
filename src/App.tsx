@@ -10,10 +10,11 @@ import { PostDetails } from './components/PostDetails';
 import { UserSelector } from './components/UserSelector';
 import { Loader } from './components/Loader';
 import { useAppDispatch, useAppSelector } from './app/hooks';
-import { selectedPostAsync, selectedPostSlice } from './features/selectedPost';
-import { postsSlice } from './features/posts';
+import { selectedPostSlice } from './features/selectedPost';
+import { postsAsync, postsSlice } from './features/posts';
 import { User } from './types/User';
 import { authorAsync } from './features/author';
+import { usersAsync } from './features/users';
 
 export const App: React.FC = () => {
   const posts = useAppSelector(state => state.posts.items);
@@ -33,11 +34,16 @@ export const App: React.FC = () => {
     dispatch(selectedPostSlice.actions.clearSelectedPost());
 
     if (author) {
-      dispatch(selectedPostAsync(author.id));
+      // dispatch(selectedPostAsync(author.id));
+      dispatch(postsAsync(author.id));
     } else {
       dispatch(postsSlice.actions.clearPosts());
     }
   }, [author, dispatch]);
+
+  useEffect(() => {
+    dispatch(usersAsync());
+  }, [dispatch]);
 
   return (
     <main className="section">
